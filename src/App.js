@@ -1,7 +1,11 @@
+import {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {TextArea} from '@douyinfe/semi-ui';
 
 function App() {
+  const [enableEdit, setEnableEdit] = useState(false);
+  const [value, setValue] = useState('');
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +21,18 @@ function App() {
         >
           Learn React
         </a>
+        
+        <button onClick={() => {
+          setEnableEdit(!enableEdit);
+        }}>click me</button>
+        <div style={{ background: 'red', color: 'white', height: 100 }}>
+          {
+            enableEdit ? 
+          <TextArea autosize rows={1} value={value} onChange={(v) => {setValue(v)}}/>
+          :
+          <div>{value}</div>
+          }
+        </div>
       </header>
     </div>
   );
